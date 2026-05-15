@@ -6,6 +6,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
+from xgboost import XGBRegressor
 
 data = pd.read_csv("data/cricket_score_prediction_dataset.csv")
 y = data.final_score
@@ -28,7 +29,7 @@ preprocessor = ColumnTransformer(transformers=[
     ('cat', catpre, catcols)
 ])
 
-model = RandomForestRegressor(n_estimators=100, random_state=0)
+model = XGBRegressor(n_estimators=100, learning_rate = 0.05,random_state=0)
 
 pipeline = Pipeline(steps=[
     ("preprocessor", preprocessor),
@@ -51,7 +52,9 @@ curr_score = int(input("What is the current score: "))
 last_5 = int(input("Runs scored in last 5 overs: "))
 bat1 = int(input("Batsman 1 runs: "))
 bat2 = int(input("Batsman 2 runs: "))
-is_pp = int(input("Is it a powerplay? (1 for yes, 0 for no): "))
+is_pp = 0
+if over_comp < 6:
+    is_pp = 1
 
 user_input = pd.DataFrame([[bat_team, bowl_team, ven, over_comp, wick,curr_score,  last_5, bat1, bat2, is_pp]], columns=['batting_team', 'bowling_team', 'venue','overs_completed', 'wickets_fallen','current_score','last_5_overs_runs', 'batsman1_runs','batsman2_runs', 'is_powerplay'])
 
