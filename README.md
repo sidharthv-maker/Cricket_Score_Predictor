@@ -44,6 +44,8 @@ Is it a powerplay? (1 for yes, 0 for no): 0
 ## Example Output
 ```Predicted score is [178.5]```
 ## Future Improvements
+```
 Add more real cricket match data
 Include player-level features
 Add toss, pitch, and weather conditions
+```
