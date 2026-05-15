@@ -59,4 +59,4 @@ if over_comp < 6:
 user_input = pd.DataFrame([[bat_team, bowl_team, ven, over_comp, wick,curr_score,  last_5, bat1, bat2, is_pp]], columns=['batting_team', 'bowling_team', 'venue','overs_completed', 'wickets_fallen','current_score','last_5_overs_runs', 'batsman1_runs','batsman2_runs', 'is_powerplay'])
 
 ans = pipeline.predict(user_input)
-print(f"Predicted score is {ans}")
+print(f"Predicted score is {ans[0]:.0f}")
